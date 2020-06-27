@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <?php
-$data['title'] = 'Millionaire Quiz | Dashboard';
+$data['title'] = 'True or False | Dashboard';
 $this->view('admin_head', $data);
 ?>
 <body class="hold-transition sidebar-mini layout-fixed">
