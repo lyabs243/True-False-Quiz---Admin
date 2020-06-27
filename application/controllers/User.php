@@ -89,6 +89,43 @@ class User extends CI_Controller {
 		redirect('admin/user');
 	}
 
+	public function update($id) {
+		if ($this->ion_auth->is_admin()) {
+			$this->load->library('form_validation');
+			$this->form_validation->set_rules('email', '« Email »', 'required');
+			$this->form_validation->set_rules('username', '« Username »', 'required');
+			$this->form_validation->set_rules('first_name', '« First name »', 'required');
+			$this->form_validation->set_rules('last_name', '« Last name »', 'required');
+
+			if ($this->form_validation->run() == FALSE) {
+				$_SESSION['success'] = false;
+			} else {
+				$user['email'] = $this->input->post('email');
+				$editPassword = $this->input->post('edit_password');
+				if(isset($editPassword)) {
+					$user['password'] = $this->input->post('password');
+				}
+				$user['username'] = $this->input->post('username');
+				$user['first_name'] = $this->input->post('first_name');
+				$user['last_name'] = $this->input->post('last_name');
+
+				$result = $this->User_model->update_user($id, $user);
+				if ($result) {
+					$_SESSION['success'] = true;
+				}
+			}
+			if ($_SESSION['success']) {
+				$_SESSION['message'] = 'The user has been successfully updated!';
+			} else {
+				$_SESSION['message'] = 'Error when updating user, please check your information.';
+			}
+		} else {
+			$_SESSION['success'] = false;
+			$_SESSION['message'] = 'Only administrators have the right to update user.';
+		}
+		redirect('admin/user');
+	}
+
 	public function logout() {
 		$this->ion_auth->logout();
 		redirect('admin/');
