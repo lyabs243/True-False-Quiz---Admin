@@ -13,6 +13,10 @@ class User_model extends CI_Model {
 		$this->load->library('ion_auth');
 	}
 
+	public function delete_user($id) {
+		return $this->ion_auth->delete_user($id);
+	}
+
 	public function update_user($id, $user) {
 		$data = array(
 			'first_name' => $user['first_name'],
