@@ -19,7 +19,13 @@ class Admin extends CI_Controller {
 	}
 
 	public function index() {
-		$this->load->view('admin_panel');
+		$data['user'] = $this->getUser();
+		$this->load->view('admin_panel', $data);
+	}
+
+	private function getUser() {
+		$user = $this->ion_auth->user()->row();
+		return$user;
 	}
 
 }
