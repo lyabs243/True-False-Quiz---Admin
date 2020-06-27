@@ -20,6 +20,19 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	public function user() {
+		if(isset($this->session->message)) {
+			$data['message'] = $this->session->message;
+			$data['success'] = $this->session->success;
+
+			unset($_SESSION['success']);
+			unset($_SESSION['message']);
+		}
+		$data['user'] = $this->getUser();
+		$data['users'] = $this->User_model->get_users();
+		$this->load->view('admin_user_page', $data);
+	}
+
 	public function index() {
 		$data['user'] = $this->getUser();
 		$data['users'] = $this->User_model->get_users();
