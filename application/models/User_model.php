@@ -8,10 +8,13 @@
 
 class User_model extends CI_Model {
 
-	public function __construct()
-	{
+	public function __construct() {
 		$this->load->database();
 		$this->load->library('ion_auth');
+	}
+
+	public function get_users() {
+		return $this->ion_auth->users()->result();
 	}
 
 }
