@@ -21,7 +21,7 @@ class Question_model extends CI_Model {
 	 */
 	function get_questions($start, $length, $level=-1, $search='') {
 		$sql = 'SELECT q.id, q.description, q.level, q.register_date, q.answer, u.first_name, u.last_name 
-		FROM questions q 
+		FROM tf_questions q 
 		JOIN users u 
 		ON q.add_by =u.id ';
 		$args = [];
@@ -54,7 +54,7 @@ class Question_model extends CI_Model {
 			$data['level'] = $question['level'];
 			$data['add_by'] = $idUser;
 			$data['answer'] = $question['answer'];
-			$this->db->insert('questions', $data);
+			$this->db->insert('tf_questions', $data);
 			$id = $this->db->insert_id();
 			return $id;
 		}
@@ -68,18 +68,18 @@ class Question_model extends CI_Model {
 			'answer' => $question['answer']
 		);
 		$this->db->where('id', $id);
-		$this->db->update('questions', $data);
+		$this->db->update('tf_questions', $data);
 	}
 
 	public function delete_question($id) {
 		$this->db->where('id', $id);
-		$result = $this->db->delete('questions');
+		$result = $this->db->delete('tf_questions');
 		return $result;
 	}
 
 	function is_question_exist($description) {
 		$sql = 'SELECT * 
-		FROM questions q 
+		FROM tf_questions q 
 		WHERE LOWER(description) = ? ';
 
 		$args = array(strtolower($description));
@@ -97,7 +97,7 @@ class Question_model extends CI_Model {
 		$total = 0;
 		$sql = '
 		SELECT COUNT(*) as total
-		 FROM questions 
+		 FROM tf_questions 
 		 ';
 		$args = array();
 		if(!empty($search))

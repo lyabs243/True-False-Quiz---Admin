@@ -17,7 +17,7 @@ class Player_model extends CI_Model {
 			$data['id_account'] = $idAccount;
 			$data['full_name'] = $fullName;
 			$data['url_profil_pic'] = $urlProfilPic;
-			$this->db->insert('player', $data);
+			$this->db->insert('tf_player', $data);
 			$id = $this->db->insert_id();
 			return $id;
 		}
@@ -26,7 +26,7 @@ class Player_model extends CI_Model {
 
 	function is_player_exist($idAccount) {
 		$sql = 'SELECT * 
-		FROM player q 
+		FROM tf_player q 
 		WHERE id_account = ? ';
 
 		$args = array($idAccount);
