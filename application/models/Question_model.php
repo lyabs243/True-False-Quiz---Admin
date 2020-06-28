@@ -20,7 +20,7 @@ class Question_model extends CI_Model {
 	 * @param int $level
 	 */
 	function get_questions($start, $length, $level=-1, $search='') {
-		$sql = 'SELECT q.id, q.description, q.level, q.register_date, u.first_name, u.last_name 
+		$sql = 'SELECT q.id, q.description, q.level, q.register_date, q.answer, u.first_name, u.last_name 
 		FROM questions q 
 		JOIN users u 
 		ON q.add_by =u.id ';

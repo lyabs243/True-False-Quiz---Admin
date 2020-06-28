@@ -96,6 +96,7 @@ $this->view('admin_head', $data);
 					<th scope="col">Description</th>
 					<th scope="col">Level</th>
 					<th scope="col">Add by</th>
+					<th scope="col">Answer</th>
 					<th scope="col">Edit</th>
 					<th scope="col">Delete</th>
 				</tr>
@@ -129,6 +130,17 @@ $this->view('admin_head', $data);
 							<h5><span class="badge badge-pill <?php echo $badgeClass; ?>"><?php echo $badge; ?></span></h5>
 						</td>
 						<td><?php echo $question->first_name . ' ' . $question->last_name; ?></td>
+						<td>
+							<?php
+							$icon = 'ic_false.png';
+							if($question->answer)
+							{
+								$icon = 'ic_correct.png';
+							}
+							?>
+							<img src="<?php echo base_url(); ?>images/icons/<?php echo $icon; ?>" width="30" height="40"
+								 alt="Icon result">
+						</td>
 						<td>
 							<a href="" data-toggle="modal" data-target="#edit-question-<?php echo $question->id; ?>">
 								<img src="<?php echo base_url(); ?>images/icons/ic_edit.png" width="30" height="30"
