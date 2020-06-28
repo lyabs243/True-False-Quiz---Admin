@@ -150,4 +150,35 @@ class Question extends CI_Controller {
 		}
 		redirect('admin/question');
 	}
+
+	public function export() {
+		$questions = $this->Question_model->get_questions(0, -1, -1);
+
+		$list = array ();
+
+		foreach ($questions as $question) {
+			$field = array($question->description, $question->level, $question->answer);
+			$list[] = $field;
+		}
+
+		$fp = fopen('./resource/export-questions.csv', 'w');
+
+		foreach ($list as $fields) {
+			fputcsv($fp, $fields);
+		}
+
+		fclose($fp);
+
+		$this->load->helper('download');
+		$name = 'True or False - questions.csv';
+		$data = file_get_contents('./resource/export-questions.csv');
+		force_download($name, $data);
+
+		if ($_SESSION['success']) {
+			$_SESSION['message'] = 'Questions has been successfully exported!';
+		} else {
+			$_SESSION['message'] = 'Exportation failed.';
+		}
+		redirect('admin/question');
+	}
 }
