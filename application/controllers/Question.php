@@ -52,4 +52,34 @@ class Question extends CI_Controller {
 		redirect('admin/question');
 	}
 
+	public function update($id) {
+		$this->load->library('form_validation');
+
+		$user = $this->ion_auth->user()->row();
+
+		// définition des règles de validation
+		$this->form_validation->set_rules('question', '« Question »', 'required');
+		$this->form_validation->set_rules('level', '« Level »', 'required');
+
+		$_SESSION['success'] = true;
+		if ($this->form_validation->run() == FALSE) {
+			$_SESSION['success'] = false;
+		} else {
+			$question['description'] = $this->input->post('question');
+			$question['level'] = $this->input->post('level');
+
+			$question['answer'] = false;
+			if ($this->input->post('answer')) {
+				$question['answer'] = true;
+			}
+
+			$this->Question_model->update_question($id, $question);
+		}
+		if ($_SESSION['success']) {
+			$_SESSION['message'] = 'The question has been successfully updated!';
+		} else {
+			$_SESSION['message'] = 'Error when updating question, please check your data.';
+		}
+		redirect('admin/question');
+	}
 }

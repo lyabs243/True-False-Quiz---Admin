@@ -61,6 +61,17 @@ class Question_model extends CI_Model {
 		return false;
 	}
 
+	public function update_question($id, $question)
+	{
+		$data = array(
+			'description' => $question['description'],
+			'level' => $question['level'],
+			'answer' => $question['answer']
+		);
+		$this->db->where('id', $id);
+		$this->db->update('questions', $data);
+	}
+
 	function is_question_exist($description) {
 		$sql = 'SELECT * 
 		FROM questions q 

@@ -198,29 +198,15 @@ $this->view('admin_head', $data);
 									<option value="2" <?php if($question->level == 2){ echo 'selected'; } ?>>Hard</option>
 								</select>
 							</div>
-							<label>Answers</label>
-							<?php
-							$index = 1;
-							foreach ($answersQst as $answer) {
-								?>
-								<div class="row">
-									<div class="col-8">
-                                        <textarea placeholder="Answer" maxlength="1000" name="answer-<?php echo $index; ?>"
-												  class="form-control" id="answer-<?php echo $index; ?>" rows="2"><?php echo $answer->description; ?></textarea>
+							<label>Answer</label>
+							<div class="row">
+								<div class="col-4">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" name="answer" id="gridRadios1" <?php if ($question->answer) { ?>checked<?php } ?>>
+										<label class="form-check-label" for="gridRadios1">Is answer true?</label>
 									</div>
-									<input type="hidden" name="id-<?php echo $index; ?>" value="<?php echo $answer->id; ?>">
-									<div class="col-4">
-										<div class="form-check">
-											<input class="form-check-input" type="radio" name="correct-answer"
-												   id="gridRadios<?php echo $index; ?>" value="<?php echo $index; ?>" <?php if($answer->is_valid_answer){ echo  'checked'; } ?>>
-											<label class="form-check-label" for="gridRadios<?php echo $index; ?>">Correct answer</label>
-										</div>
-									</div>
-								</div><br>
-								<?php
-								$index++;
-							}
-							?>
+								</div>
+							</div><br>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
