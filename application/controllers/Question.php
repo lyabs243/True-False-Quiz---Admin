@@ -82,4 +82,16 @@ class Question extends CI_Controller {
 		}
 		redirect('admin/question');
 	}
+
+	public function delete($id) {
+		$_SESSION['success'] = false;
+		$result = $this->Question_model->delete_question($id);
+		if ($result) {
+			$_SESSION['success'] = true;
+			$_SESSION['message'] = 'The question has been successfully deleted!';
+		} else {
+			$_SESSION['message'] = 'Error when deleting question.';
+		}
+		redirect('admin/question');
+	}
 }

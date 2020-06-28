@@ -61,8 +61,7 @@ class Question_model extends CI_Model {
 		return false;
 	}
 
-	public function update_question($id, $question)
-	{
+	public function update_question($id, $question) {
 		$data = array(
 			'description' => $question['description'],
 			'level' => $question['level'],
@@ -70,6 +69,12 @@ class Question_model extends CI_Model {
 		);
 		$this->db->where('id', $id);
 		$this->db->update('questions', $data);
+	}
+
+	public function delete_question($id) {
+		$this->db->where('id', $id);
+		$result = $this->db->delete('questions');
+		return $result;
 	}
 
 	function is_question_exist($description) {
