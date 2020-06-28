@@ -48,6 +48,35 @@ class Question_model extends CI_Model {
 		return $query->result();
 	}
 
+	public function add_question($idUser, $question) {
+		if(!$this->is_question_exist($question['description'])) {
+			$data['description'] = $question['description'];
+			$data['level'] = $question['level'];
+			$data['add_by'] = $idUser;
+			$data['answer'] = $question['answer'];
+			$this->db->insert('questions', $data);
+			$id = $this->db->insert_id();
+			return $id;
+		}
+		return false;
+	}
+
+	function is_question_exist($description) {
+		$sql = 'SELECT * 
+		FROM questions q 
+		WHERE LOWER(description) = ? ';
+
+		$args = array(strtolower($description));
+
+		$query = $this->db->query($sql, $args);
+		$results = $query->result();
+
+		foreach ($results as $result) {
+			return true;
+		}
+		return false;
+	}
+
 	function  total_questions($level=-1, $search='') {
 		$total = 0;
 		$sql = '
