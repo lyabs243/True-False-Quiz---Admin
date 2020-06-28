@@ -34,7 +34,10 @@ class Question extends CI_Controller {
 			$question['description'] = $this->input->post('question');
 			$question['level'] = $this->input->post('level');
 
-			$question['answer'] = (int)$this->input->post('answer');
+			$question['answer'] = false;
+			if ($this->input->post('answer')) {
+				$question['answer'] = true;
+			}
 
 			$result = $this->Question_model->add_question($user->id, $question);
 			if(!$result) {
