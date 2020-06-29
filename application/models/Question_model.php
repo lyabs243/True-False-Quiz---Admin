@@ -48,6 +48,20 @@ class Question_model extends CI_Model {
 		return $query->result();
 	}
 
+	public function generate_questions($level, $number) {
+		$sql = '
+		SELECT * FROM `tf_questions` 
+		WHERE level = ?
+		ORDER by rand()
+		LIMIT ?		
+		 ';
+		$args = array($level, $number);
+
+		$query = $this->db->query($sql, $args);
+		$questions = $query->result_array();
+		return $questions;
+	}
+
 	public function add_question($idUser, $question) {
 		if(!$this->is_question_exist($question['description'])) {
 			$data['description'] = $question['description'];
