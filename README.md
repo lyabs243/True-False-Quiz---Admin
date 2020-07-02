@@ -24,9 +24,9 @@ _Please note that the admin part is not mandatory, in case you do not have hoste
 
 To get source code and all informations about mobile application part of True False Quiz [click here](https://github.com/lyabs243/True-False-Quiz)
 
-##Features
+## Features
 
-###Quiz
+### Quiz
 
 - Uses OPEN TRIVIA DB with many questions pre-load
 - Uses and manage your own questions via admin panel
@@ -35,13 +35,13 @@ To get source code and all informations about mobile application part of True Fa
 - True/False questions
 - Songs effects
 
-###Google Admob
+### Google Admob
 
 - Banner Ad on dialog
 - Inerstitial Ad on transition
 - No abusive advertising
 
-###Global Leaderboard
+### Global Leaderboard
 
 - Sign-in with Google
 - Weekly Leaderboard
