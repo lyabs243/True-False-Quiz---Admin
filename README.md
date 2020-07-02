@@ -46,3 +46,13 @@ To get source code and all informations about mobile application part of True Fa
 - Sign-in with Google
 - Weekly Leaderboard
 - Monthly Leaderboard
+
+## Screenshots
+
+<img alt="Sign In" src="screenshots/TF - Sign In.JPG" />
+
+<img alt="Home Page" src="screenshots/TF - HomePage.JPG" />
+
+<img alt="Question Dashboard" src="screenshots/TF - Questions Dashboard.JPG" />
+
+<img alt="Users Dashboard" src="screenshots/TF - Users Dashboard.JPG" />
